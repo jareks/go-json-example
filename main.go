@@ -1,17 +1,26 @@
 package main
 
-import "fmt"
-import "encoding/json"
+import(
+  "fmt"
+  "encoding/json"
+  "bufio"
+  "os"
+)
 
 func main() {
   for {
-    var message string;
+    reader := bufio.NewReader(os.Stdin)
+    message, _ := reader.ReadString('\n')
     jsonMap := make(map[string]string)
-
-    fmt.Scanf("%s", &message)
     jsonMap["body"] = message
     json, _ := json.Marshal(jsonMap)
     fmt.Printf("%s\n", json)
   }
 }
-
+/*
+func passMessage(reader, writer) {
+  var message string
+  reader.read(&message)
+  writer.write(message)
+}
+*/
